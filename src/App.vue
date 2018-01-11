@@ -1,23 +1,53 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div>
+    <!-- 头部 -->
+    <v-header :seller="seller"></v-header>
+
   </div>
 </template>
 
 <script>
+import header from './components/header/header';
+import data from './common/json/data.json';
+
 export default {
-  name: 'app',
+  data() {
+    return {
+      seller: {},
+    };
+  },
+  created() {
+    this.seller = data.seller;
+  },
+  components: {
+    'v-header': header,
+  },
 };
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style lang="stylus">
+@import "common/stylus/mixin.styl";
+.tab {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  /*border: 1px solid rgba(7,17,27,0.1);*/
+  border-1px(rgba(7, 17, 27, 0.1));
+}
+
+.tab .tab-item {
+  flex: 1;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+.tab .tab-item a {
+  display: block;
+  font-size: 14px;
+  color: rgb(77, 85, 93);
+}
+
+.tab .tab-item .active {
+  color: rgb(240, 20, 20);
 }
 </style>
