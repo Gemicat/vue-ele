@@ -31,13 +31,15 @@ module.exports = {
     }],
     // disallow reassignment of function parameters
     // disallow parameter object manipulation except for specific exclusions
-    'no-param-reassign': ['error', {
+    'no-param-reassign': [0, {
       props: true,
       ignorePropertyModificationsFor: [
         'state', // for vuex state
         'acc', // for reduce accumulators
         'e', // for e.returnvalue
-        'el'
+        'el',
+        'food',
+        'alert'
       ]
     }],
     // allow optionalDependencies
@@ -47,6 +49,10 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-console': ["error", { allow: ["warn", "log"] }],
-    "no-underscore-dangle": ["error", { "allow": ["_constructed"] }]
+    "no-underscore-dangle": ["error", { "allow": ["_constructed"] }],
+    "no-alert": 0,
+    "no-restricted-syntax": 0,
+    "prefer-template": 0,
+    "no-else-return": 0
   },
 }

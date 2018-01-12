@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Resource from 'vue-resource';
 import App from '../App';
 import goods from '../components/goods/goods';
-// import ratings from '../components/ratings/ratings';
+import ratings from '../components/ratings/ratings';
 // import seller from '../components/seller/seller';
 
 Vue.use(Router);
@@ -17,6 +17,9 @@ const routes = [
     children: [{
       path: '/goods',
       component: goods,
+    }, {
+      path: '/ratings',
+      component: ratings,
     }],
   },
 ];

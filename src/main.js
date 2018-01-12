@@ -12,4 +12,4 @@ new Vue({
   router,
 });
 
-router.push('/goods');
+router.push('/ratings');

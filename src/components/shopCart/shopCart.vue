@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="shopCart">
-      <div class="content">
+      <div class="content" @click="toggleList">
         <div class="content-left">
           <!-- 购物车图标 -->
           <div class="logo-wrapper">
@@ -33,10 +33,10 @@
       </div>
       <!-- 购物车列表 -->
       <transition name="fade">
-        <div class="shopcart-list">
+        <div class="shopcart-list" v-show="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
-            <span class="empty">清空</span>
+            <span class="empty" @click="empty">清空</span>
           </div>
           <div class="list-content" ref="listContent">
             <ul>
@@ -52,10 +52,15 @@
         </div>
       </transition>
     </div>
+    <!-- 遮罩 -->
+    <transition name="fade">
+      <div class="list-mask" v-show="listShow" @click="hideList"></div>
+    </transition>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll';
 import cartControl from '../cartControl/cartControl';
 
 export default {
@@ -80,6 +85,7 @@ export default {
     return {
       balls: [{ show: false }, { show: false }, { show: false }, { show: false }, { show: false }],
       dropBalls: [],
+      fold: true,
     };
   },
   computed: {
@@ -117,11 +123,34 @@ export default {
       }
       return payClass;
     },
+    listShow() {
+      if (!this.totalCount) {
+        this.fold = true;
+        return false;
+      }
+      const show = !this.fold;
+      if (show) {
+        this.$nextTick(() => {
+          if (!this.scroll) {
+            this.scroll = new BScroll(this.$refs.listContent, {
+              click: true,
+            });
+          } else {
+            this.scroll.refresh();
+          }
+        });
+      }
+      return show;
+    },
   },
   methods: {
     // 去支付
     pay() {
-      console.log('pay');
+      if (this.totalPrice < this.minPrice) {
+        return false;
+      }
+      alert(`支付${this.totalPrice}元`);
+      return true;
     },
     drop(el) {
       for (let i = 0; i < this.balls.length; i += 1) {
@@ -167,6 +196,22 @@ export default {
         ball.show = false;
         el.style.display = 'none';
       }
+    },
+    toggleList() {
+      if (!this.totalCount) {
+        return false;
+      }
+      this.fold = !this.fold;
+      return true;
+    },
+    empty() {
+      this.selectFoods.forEach((food) => {
+        food.count = 0;
+      });
+    },
+    hideList() {
+      this.fold = true;
+      return true;
     },
   },
 };
