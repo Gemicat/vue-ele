@@ -36,7 +36,8 @@ module.exports = {
       ignorePropertyModificationsFor: [
         'state', // for vuex state
         'acc', // for reduce accumulators
-        'e' // for e.returnvalue
+        'e', // for e.returnvalue
+        'el'
       ]
     }],
     // allow optionalDependencies
@@ -44,6 +45,8 @@ module.exports = {
       optionalDependencies: ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': ["error", { allow: ["warn", "log"] }],
+    "no-underscore-dangle": ["error", { "allow": ["_constructed"] }]
+  },
 }

@@ -116,5 +116,3 @@ export default {
 <style lang="stylus" scoped>
 @import 'header.styl';
 </style>
-
-

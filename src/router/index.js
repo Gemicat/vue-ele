@@ -1,15 +1,27 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import HelloWorld from '@/components/HelloWorld';
+import Resource from 'vue-resource';
+import App from '../App';
+import goods from '../components/goods/goods';
+// import ratings from '../components/ratings/ratings';
+// import seller from '../components/seller/seller';
 
 Vue.use(Router);
+Vue.use(Resource);
+
+const routes = [
+  {
+    path: '/',
+    name: 'index',
+    component: App,
+    children: [{
+      path: '/goods',
+      component: goods,
+    }],
+  },
+];
 
 export default new Router({
-  // routes: [
-  //   {
-  //     path: '/',
-  //     name: 'HelloWorld',
-  //     component: HelloWorld,
-  //   },
-  // ],
+  linkActiveClass: 'active',
+  routes,
 });
