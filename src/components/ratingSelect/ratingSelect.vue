@@ -30,7 +30,9 @@ export default {
   props: {
     ratings: {
       type: Array,
-      default: [],
+      default() {
+        return [];
+      },
     },
     selectType: {
       type: Number,

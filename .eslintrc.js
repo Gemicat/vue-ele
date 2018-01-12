@@ -49,10 +49,11 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-console': ["error", { allow: ["warn", "log"] }],
-    "no-underscore-dangle": ["error", { "allow": ["_constructed"] }],
+    "no-underscore-dangle": 0,
     "no-alert": 0,
     "no-restricted-syntax": 0,
     "prefer-template": 0,
-    "no-else-return": 0
+    "no-else-return": 0,
+    "no-shadow": 0
   },
 }

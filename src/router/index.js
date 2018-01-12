@@ -4,7 +4,7 @@ import Resource from 'vue-resource';
 import App from '../App';
 import goods from '../components/goods/goods';
 import ratings from '../components/ratings/ratings';
-// import seller from '../components/seller/seller';
+import seller from '../components/seller/seller';
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -20,6 +20,9 @@ const routes = [
     }, {
       path: '/ratings',
       component: ratings,
+    }, {
+      path: '/seller',
+      component: seller,
     }],
   },
 ];
